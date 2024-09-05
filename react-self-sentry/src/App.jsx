@@ -3,12 +3,19 @@ import Home from './features/home/Home';
 import LaregeRender from './features/sentry-performance/LargeRender';
 import LongFetch from './features/sentry-performance/LongFetch';
 import TriggerError from './features/sentry-exception/TriggerError';
+import { SelfSentry } from './self-sentry/index.jsx';
+
 import './App.css';
 
+SelfSentry.init({ endpoint: 'hihi' });
+
+const SelfSentryRoutes = SelfSentry.reactRouterMetric(Routes);
+
 function App() {
+    SelfSentry.test();
     return (
         <Router>
-            <Routes>
+            <SelfSentryRoutes>
                 <Route exact path="/" element={<Home />} />
                 <Route
                     exact
@@ -26,7 +33,7 @@ function App() {
                     element={<TriggerError />}
                 />
                 <Route exact path="/sentry-exception-02" element={<Home />} />
-            </Routes>
+            </SelfSentryRoutes>
         </Router>
     );
 }
