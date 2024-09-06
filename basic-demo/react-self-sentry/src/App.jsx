@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './features/home/Home';
-import LaregeRender from './features/sentry-performance/LargeRender';
-import LongFetch from './features/sentry-performance/LongFetch';
-import TriggerError from './features/sentry-exception/TriggerError';
+import Home from './features/home/Home.jsx';
+import LaregeRender from './features/sentry-performance/LargeRender.jsx';
+import LongFetch from './features/sentry-performance/LongFetch.jsx';
+import TriggerError from './features/sentry-exception/TriggerError.jsx';
 import { SelfSentry } from './self-sentry/index.jsx';
 
 import './App.css';
