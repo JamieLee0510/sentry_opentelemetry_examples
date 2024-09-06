@@ -12,7 +12,7 @@ SelfSentry.init({ endpoint: 'hihi' });
 const SelfSentryRoutes = SelfSentry.reactRouterMetric(Routes);
 
 function App() {
-    SelfSentry.test();
+    //SelfSentry.testCheckLocation();
     return (
         <Router>
             <SelfSentryRoutes>
