@@ -1,5 +1,7 @@
 const { sdk } = require('./instrumentation-jaeger');
 const { trace } = require('@opentelemetry/api');
+const axios = require('axios');
+
 sdk.start();
 // try {
 //     sdk.start();
@@ -40,6 +42,14 @@ app.get('/', (req, res) => {
 app.get('/api/test01', (req, res) => {
     console.log(req);
     res.json({ message: 'receive opentelemetry' });
+});
+
+app.get('/api/test02', async (req, res) => {
+    const pythonServiceRes = await axios.get(
+        'http://localhost:3031/api/test-01',
+    );
+    console.log('---pythonServiceRes:', pythonServiceRes);
+    res.json({ message: 'receive python service data successfully' });
 });
 
 app.listen(PORT, () => {
