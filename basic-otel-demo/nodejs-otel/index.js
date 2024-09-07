@@ -1,5 +1,28 @@
-const { sdk } = require('./instrumentation');
+const { sdk } = require('./instrumentation-jaeger');
+const { trace } = require('@opentelemetry/api');
 sdk.start();
+// try {
+//     sdk.start();
+
+//     const demoTracing = () => {
+//         const tracer = trace.getTracer('manual-tracer');
+//         const span = tracer.startSpan('manual-span');
+//         setTimeout(() => {
+//             span.end(); // 結束 span
+//             console.log('Span 已手動結束');
+
+//             // Optional: 关闭 SDK 并确保数据被导出
+//             sdk.shutdown().then(() => {
+//                 console.log('SDK 已關閉');
+//                 process.exit(0); // 退出應用程序
+//             });
+//         }, 3000);
+//     };
+
+//     demoTracing();
+// } catch (err) {
+//     console.error('sdk error:', err);
+// }
 
 const express = require('express');
 const cors = require('cors');
@@ -15,7 +38,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/test01', (req, res) => {
-    res.json({ message: 'receiver sentry data' });
+    console.log(req);
+    res.json({ message: 'receive opentelemetry' });
 });
 
 app.listen(PORT, () => {
