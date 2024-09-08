@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from opentelemetry import trace
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.asgi import OpenTelemetryMiddleware
@@ -36,7 +36,8 @@ async def read_root():
     return {"message": "Hello World"}
 
 @app.get("/api/test-01")
-async def test_endpoint():
+async def test_endpoint(request: Request):
+    print(request.headers)
     return {"message": "Hello Opentelemetry"}
 
 # 添加 OpenTelemetry 中間件來追蹤所有請求
