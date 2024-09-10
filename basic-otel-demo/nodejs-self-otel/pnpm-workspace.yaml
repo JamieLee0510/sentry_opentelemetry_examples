@@ -1,0 +1,4 @@
+packages:
+  - 'node-serverA'
+  - 'node-serverB'
+  - 'node-collector'
