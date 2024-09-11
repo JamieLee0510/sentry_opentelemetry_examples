@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/test01', (req, res) => {
-    console.log(req.headers);
+    console.log(req.headers.traceParent);
     res.json({ message: 'receive opentelemetry' });
 });
 
